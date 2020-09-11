@@ -23,16 +23,20 @@ if(!isset($p)){
     <title>Tienda online</title>
 </head>
 <body>
-    <div class="header">
-        Tienda online
-    </div>
+    <div class="header"><a id="headertext" href="?p=inicio">Tienda online</a></div>
 
-    <div class="menu">
-        <a href="?p=inicio">Inicio</a>
-        <a href="?p=productos">Productos</a>
-        <a href="?p=carrito">Carrito</a>
-    </div>
-
+    <nav id="menu">
+		<li><a href="#"><i class="icon icon-tag"></i>MENU</a>
+			<ul>
+                <li><a href="?p=shop">Shop</a></li>
+                <li><a href="?p=cart">Cart</a></li>
+				<li><a href="?p=about">About</a></li>
+				<li><a href="?p=contact">Contact</a></li>
+			</ul>
+        </li>
+    </nav>
+    
+    
     <div class="cuerpo">
         <?php
             if(file_exists("modulos/".$p.".php")){
