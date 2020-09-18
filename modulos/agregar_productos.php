@@ -1,7 +1,24 @@
 <?php
 check_admin();
+
+if (isset($enviar)){
+    $name = clear($name);
+    $price = clear($price);
+
+    $imagen = "";
+
+    if(is_uploaded_file($_FILES['imagen']['tmp_name'])){
+        $imagen = $name.rand(0,1000).".png";
+        move_uploaded_file($_FILES['imagen']['tmp_name'], "productos/".$imagen);
+    }
+
+    mysqli_query($con, "INSERT INTO productos (name, price, imagen) VALUES ('$name', '$price', '$imagen')");
+    alert("Producto añadido con éxito.");
+    redir("?p=agregar_productos");
+}
+
 ?>
-<form method="post" action="">
+<form method="post" action="" enctype="multipart/form-data">
     <div class="centrarlog">
     <div class="form-group">
         <input type="text" class="form-control" name="name" placeholder="Name of the product">
