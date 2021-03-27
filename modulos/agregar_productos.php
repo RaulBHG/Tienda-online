@@ -1,42 +1,62 @@
 <?php
 check_admin();
-
-if (isset($enviar)){
-    $name = clear($name);
-    $price = clear($price);
-
-    $imagen = "";
-
-    if(is_uploaded_file($_FILES['imagen']['tmp_name'])){
-        $imagen = $name.rand(0,1000).".png";
-        move_uploaded_file($_FILES['imagen']['tmp_name'], "productos/".$imagen);
-    }
-
-    mysqli_query($con, "INSERT INTO productos (name, price, imagen) VALUES ('$name', '$price', '$imagen')");
-    alert("Producto añadido con éxito.");
-    redir("?p=agregar_productos");
-}
-
 ?>
-<form method="post" action="" enctype="multipart/form-data">
+
+<form method="post" action="" id="formAdd" enctype="multipart/form-data">
     <div class="centrarlog">
-    <div class="form-group">
-        <input type="text" class="form-control" name="name" placeholder="Name of the product">
-    </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="Name of the product" required>
+        </div>
 
-    <div class="form-group">
-        <input type="number" class="form-control" name="price" placeholder="Price">
-    </div>
+        <div class="form-group">
+            <textarea type="text" class="form-control" rows="3" name="description"
+                placeholder="Description of the product" required></textarea>
+        </div>
 
-    <label>Inserta foto</label>
-    <div class="form-group">
-        <input type="file" class="form-control" style="max-width: 50%;" name="imagen" title="Imagen del producto" placeholder="Image">
-    </div>
+        <label>Inserta foto</label>
+        <div class="form-group">
+            <input type="file" class="form-control-file" id="imagen" name="imagen" title="Portada del producto"
+                placeholder="Image" required>
+        </div>
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-success" name="enviar">Add product</button>
-    </div>
+        <div class="form-group">
+            <input type="file" class="form-control-file" id="imagenes" name="imagenes[]" title="Imagenes de muestra"
+                placeholder="Images" multiple required>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Add product</button>
+        </div>
     </div>
 </form>
+<script>
+$("#formAdd").submit(function(event) {
 
+    // Prevent default posting of form - put here to work in case of errors
+    event.preventDefault();
 
+    var formData = new FormData(this);
+
+    formData.append('action', 'añadir');
+
+    $.ajax({
+        url: "configs/manejar_bbdd.php",
+        type: 'POST',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            $("#formAdd").trigger("reset");
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        },
+    });
+
+});
+</script>

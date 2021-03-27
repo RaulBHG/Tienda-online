@@ -1,14 +1,15 @@
 * {
     margin: 0;
     padding: 0;
-    background: #000;
-    font-family: "Baskerville Old Face", serif;
+    font-family: serif;
+    letter-spacing: 2px;
+    color: #000;
 }
 
 .header {
-    background: #000;
-    color: #fff;
-    padding: 30px;
+    color: #000;
+    padding-top: 60px;
+    padding-bottom: 60px;
     text-align: center;
     font-size: 30px;
     font-weight: bold;
@@ -17,22 +18,24 @@
 
 #headertext {
     text-decoration: none;
-    color: #fff;
+    color: #000;
 }
 
 .cuerpo {
-    background: #000;
-    color: white;
-    padding: 30px;
+    color: #000;
+    position: static;
+    min-height: 69vh;
+    margin: 10px 50px;
     -webkit-transition: all .8s ease;
     -moz-transition: all .8s ease;
     -ms-transition: all .8s ease;
     -o-transition: all .8s ease;
     transition: all .8s ease;
+    overflow-x: hidden;
+    animation: aparecer .50s;
 }
 
 .footer {
-    background: #000;
     color: #aaa;
     text-align: center;
     vertical-align: bottom;
@@ -43,102 +46,640 @@
 
 /*MENU*/
 
-body {
-    background-color: #000 !important;
+#cabecera {
+    top: 0;
+    background-color: #fff;
+    width: 100%;
 }
 
 #menu {
-    top: -20px;
-    left: 0;
-    right: 0;
-    margin: 20px auto;
-    max-width: 300px;
-    width: 0%;
-    list-style: none;
-    display: table;
-    background: #000;
-    position: relative;
-    -webkit-transition: all .8s ease;
-    -moz-transition: all .8s ease;
-    -ms-transition: all .8s ease;
-    -o-transition: all .8s ease;
-    transition: all .8s ease;
+    text-align: center;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1;
+}
+
+#menu ul {
+    list-style-type: none;
+    margin: 5px;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 #menu li {
-    display: block;
+    float: left;
+    min-width: 150px;
+    max-width: 150px;
+    border-right: 1px solid #000;
 }
 
-#menu>li>a {
-    font-size: 25px;
-}
-
-#menu>li>a:hover {
-    text-shadow: 0px 0px 10px turquoise;
-}
-
-
-/*Sub-menu*/
-
-#menu>li:hover>ul {
-    display: block;
-    height: 400%;
-}
-
-#menu:hover~.cuerpo {
-    margin-top: 35vh;
-}
-
-#menu>li>ul {
-    font-size: 20px;
-    display: block;
-    position: absolute;
-    background: #000;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    height: 0%;
-    -webkit-transition: all .8s ease;
-    -moz-transition: all .8s ease;
-    -ms-transition: all .8s ease;
-    -o-transition: all .8s ease;
-    transition: all .8s ease;
+#menu li:last-child {
+    border-right: none;
 }
 
 #menu li a {
-    color: #fff;
     display: block;
-    padding: 20px;
-    position: relative;
+    color: #000;
     text-align: center;
+    padding: 14px 50px;
     text-decoration: none;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
+    transition: 0.3s;
 }
 
-#menu>li>ul>li a:hover {
-    font-size: 23px;
-    text-shadow: 0px 0px 10px white;
+#menu li a:hover:not(.active) {
+    background-color: rgba(107, 107, 107, 0.274);
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
 }
 
 
-/*Fin de menu*/
+/*FIN MENU*/
+
+
+/*Menu movil*/
+
+#abrirMenu {
+    display: none;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+span {
+    color: #000;
+}
+
+
+/*Fin menu movil*/
 
 html {
     height: 100vh;
 }
 
+
+/*INICIO*/
+
+@media (min-width: 768px) and (max-width: 991px) {
+    /* Show 4th slide on md  if col-md-4*/
+    .top-content .carousel-inner .active.col-md-4.carousel-item+.carousel-item+.carousel-item+.carousel-item {
+        position: absolute;
+        top: 0;
+        right: -33.3333%;
+        /*change this with javascript in the future*/
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    /* Show 3rd slide on sm  if col-sm-6*/
+    .top-content .carousel-inner .active.col-sm-6.carousel-item+.carousel-item+.carousel-item {
+        position: absolute;
+        top: 0;
+        right: -50%;
+        /*change this with javascript in the future*/
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+}
+
+@media (min-width: 576px) {
+    .top-content .carousel-item {
+        margin-right: 0;
+    }
+    /* show 2 items */
+    .top-content .carousel-inner .active+.carousel-item {
+        display: block;
+    }
+    .top-content .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .top-content .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item {
+        transition: none;
+    }
+    .top-content .carousel-inner .carousel-item-next {
+        position: relative;
+        transform: translate3d(0, 0, 0);
+    }
+    /* left or forward direction */
+    .top-content .active.carousel-item-left+.carousel-item-next.carousel-item-left,
+    .top-content .carousel-item-next.carousel-item-left+.carousel-item,
+    .top-content .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    /* farthest right hidden item must be abso position for animations */
+    .top-content .carousel-inner .carousel-item-prev.carousel-item-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    /* right or prev direction */
+    .top-content .active.carousel-item-right+.carousel-item-prev.carousel-item-right,
+    .top-content .carousel-item-prev.carousel-item-right+.carousel-item,
+    .top-content .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+}
+
+
+/*MD*/
+
+@media (min-width: 768px) {
+    /* show 3rd of 3 item slide */
+    .top-content .carousel-inner .active+.carousel-item+.carousel-item {
+        display: block;
+    }
+    .top-content .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item+.carousel-item {
+        transition: none;
+    }
+    .top-content .carousel-inner .carousel-item-next {
+        position: relative;
+        transform: translate3d(0, 0, 0);
+    }
+    /* left or forward direction */
+    .top-content .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item+.carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    /* right or prev direction */
+    .top-content .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item+.carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+}
+
+
+/*LG */
+
+@media (min-width: 991px) {
+    /* show 4th item */
+    .top-content .carousel-inner .active+.carousel-item+.carousel-item+.carousel-item {
+        display: block;
+    }
+    .top-content .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item+.carousel-item+.carousel-item {
+        transition: none;
+    }
+    /* Show 5th slide on lg if col-lg-3 */
+    .top-content .carousel-inner .active.col-lg-3.carousel-item+.carousel-item+.carousel-item+.carousel-item+.carousel-item {
+        position: absolute;
+        top: 0;
+        right: -25%;
+        /*change this with javascript in the future*/
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    /* left or forward direction */
+    .top-content .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item+.carousel-item+.carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    /* right or prev direction //t - previous slide direction last item animation fix */
+    .top-content .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item+.carousel-item+.carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+}
+
+
+/*ADMINISTRADOR*/
+
 .centrarlog {
     margin: auto;
-    width: 40%;
-    padding: 10px;
+    width: 60%;
+    padding: 20px;
     text-align: center;
+}
+
+.centrarlog button {
+    margin-bottom: 3%;
 }
 
 #administrador {
     text-decoration: none;
     color: #aaa;
+}
+
+
+/*Editar*/
+
+table {
+    width: 50%;
+    margin: 10px auto;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.mainTR th {
+    font-size: 20px;
+}
+
+tr {
+    border-bottom: 1px solid #cbcbcb;
+    height: 100px;
+}
+
+th,
+td {
+    border: none;
+    height: 30px;
+    padding: 2px;
+}
+
+tr:hover {
+    background: #a3a3a341;
+    transition: 0.6s;
+}
+
+.img_edit {
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+}
+
+#transEdit {
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+    height: 0;
+}
+
+
+/*SHOP*/
+
+.producto {
+    margin-bottom: 1%;
+    transition: 0.3s;
+    animation: aparecer .50s;
+}
+
+.img_producto {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    display: block;
+    object-fit: cover;
+    margin-top: 5px;
+    border-radius: 6px;
+}
+
+.name_producto {
+    text-align: center;
+    color: #000;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.container {
+    width: 100%;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.row {
+    margin-top: 30px;
+}
+
+
+/*Mostrar info producto*/
+
+
+/*Visualización*/
+
+
+/*<img class="img_see vertical-center" src="productos/<?= $r['imagen'] ?>" style="border-radius: 10px;" />*/
+
+.wrapper {
+    height: 420px;
+    width: 654px;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 7px 7px 7px 7px;
+    /* VIA CSS MATIC https://goo.gl/cIbnS */
+    -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+}
+
+.product-img {
+    float: left;
+    height: 420px;
+    width: 327px;
+}
+
+.product-img img {
+    border-radius: 7px 0 0 7px;
+}
+
+.product-info {
+    float: left;
+    height: 420px;
+    width: 327px;
+    border-radius: 0 7px 10px 7px;
+    background-color: #ffffff;
+}
+
+.product-text {
+    height: 300px;
+    width: 327px;
+}
+
+.product-text h1 {
+    margin: 0 0 0 38px;
+    padding-top: 52px;
+    font-size: 34px;
+    color: #474747;
+}
+
+.product-text h1,
+.product-price-btn p {
+    font-family: 'Bentham', serif;
+}
+
+.product-text h2 {
+    margin: 0 0 47px 38px;
+    font-size: 13px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #d2d2d2;
+    letter-spacing: 0.2em;
+}
+
+.product-text p {
+    height: 125px;
+    margin: 0 10px 0 38px;
+    font-family: 'Playfair Display', serif;
+    color: #8d8d8d;
+    line-height: 1.7em;
+    font-size: 18px;
+    font-weight: lighter;
+    overflow: hidden;
+}
+
+.img {
+    width: 300px;
+    height: 420px;
+    object-fit: cover;
+}
+
+
+/*CART*/
+
+.imagen_carro {
+    width: 10%;
+    height: auto;
+}
+
+.tablaCart th,
+tr {
+    color: #000;
+}
+
+#principal {
+    height: 20px;
+}
+
+
+/*MOVIL*/
+
+@media screen and (max-width: 1850px) {
+    .fly-in-text {
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    .fly-in-text li {
+        font-size: 50px;
+        margin-right: 40px;
+    }
+    .fly-in-text li:last-child {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 1550px) {
+    .fly-in-text {
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    .fly-in-text li {
+        font-size: 40px;
+        margin-right: 30px;
+    }
+    .fly-in-text li:last-child {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    .fly-in-text {
+        left: 35%;
+        top: 50%;
+        transform: translateX(-25%) translateY(-25%);
+    }
+    .fly-in-text li {
+        font-size: 40px;
+        margin-right: 30px;
+    }
+    .fly-in-text li:last-child {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    #menu {
+        display: none;
+    }
+    #abrirMenu {
+        display: block;
+    }
+    #headertext {
+        font-size: 20px;
+    }
+    .fly-in-text {
+        left: 35%;
+        top: 50%;
+        transform: translateX(-25%) translateY(-25%);
+    }
+    .fly-in-text li {
+        font-size: 40px;
+        margin-right: 30px;
+    }
+    .fly-in-text li:last-child {
+        margin-right: 0;
+    }
+    .popup .content {
+        width: 90%;
+        height: 45vw;
+        padding: 0;
+    }
+    .popup .content h1 {
+        font-size: 40px;
+    }
+    .info_prod {
+        margin-top: -60px;
+    }
+    .formComprar button {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .fly-in-text {
+        left: 35%;
+        top: 50%;
+        transform: translateX(-25%) translateY(-25%);
+    }
+    .fly-in-text li {
+        font-size: 20px;
+        margin-right: 30px;
+    }
+    .fly-in-text li:last-child {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .fly-in-text {
+        left: 30%;
+        top: 50%;
+        transform: translateX(-13%) translateY(-15%);
+    }
+    .fly-in-text li {
+        font-size: 3.5vw;
+        margin-right: 5px;
+    }
+    .fly-in-text li:last-child {
+        margin-right: 0;
+    }
+    .centrarlog {
+        width: 70%;
+    }
+    table {
+        margin: 10px auto;
+    }
+    .mainTR th {
+        font-size: 15px;
+    }
+    tr {
+        height: 50px;
+    }
+    .img_edit {
+        height: 70px;
+        width: auto;
+    }
+    .popup .content {
+        width: 100%;
+        height: 90%;
+        padding: 0;
+    }
+    .popup .content h1 {
+        font-size: 40px;
+    }
+    .info_prod {
+        margin-top: -60px;
+    }
+    .formComprar button {
+        width: 80px;
+        font-size: 15px;
+    }
+    .img_see {
+        width: 35%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .fly-in-text {
+        left: 25%;
+        top: 50%;
+        transform: translateX(-13%) translateY(-15%);
+    }
+    .fly-in-text li {
+        font-size: 3.5vw;
+        margin-right: 5px;
+    }
+    .fly-in-text li:last-child {
+        margin-right: 0;
+    }
+}
+
+
+/*FIN MOVIL*/
+
+
+/*ANIMACIONES*/
+
+@keyframes aparecer {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
 }

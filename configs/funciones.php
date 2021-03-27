@@ -32,4 +32,25 @@
         <?php
     }
 
+    function addCest($cant, $id){
+        $add = array(
+            'ID'=>$id,
+            'CANT'=>$cant
+        );
+        if (!isset($_SESSION['CARRITO'])) {
+            session_destroy();
+            session_start();
+            $_SESSION['CARRITO'][0] = $add;
+        } else {
+            for ($i = 0; $i < $cant; $i++) {
+                $numeroProductos = count($_SESSION['CARRITO']);
+                $_SESSION['CARRITO'][$numeroProductos] = $add;
+            }
+        }
+    }
+
+    /*function togglePopup() {
+        document.getElementById("popup-1").classList.toggle("active");
+    }*/
+
 ?>
