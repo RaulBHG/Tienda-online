@@ -165,6 +165,24 @@ html {
 
 /*INICIO*/
 
+.carousel {
+    z-index: 0;
+}
+
+.top-content .carousel-control-prev {
+    left: -110px;
+    border-bottom: 0;
+    font-size: 40px;
+    color: #444;
+}
+
+.top-content .carousel-control-next {
+    right: -110px;
+    border-bottom: 0;
+    font-size: 40px;
+    color: #444;
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
     /* Show 4th slide on md  if col-md-4*/
     .top-content .carousel-inner .active.col-md-4.carousel-item+.carousel-item+.carousel-item+.carousel-item {
@@ -369,6 +387,12 @@ tr:hover {
 
 /*SHOP*/
 
+.carousel-indicators li {
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+}
+
 .producto {
     margin-bottom: 1%;
     transition: 0.3s;
@@ -485,6 +509,24 @@ tr:hover {
     width: 300px;
     height: 420px;
     object-fit: cover;
+}
+
+.wrapper .carousel-control-next:hover {
+    background: linear-gradient(to right, transparent 0%, rgb(39, 39, 39) 100%);
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.wrapper .carousel-control-prev:hover {
+    background: linear-gradient(to left, transparent 0%, rgb(39, 39, 39) 100%);
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
 }
 
 

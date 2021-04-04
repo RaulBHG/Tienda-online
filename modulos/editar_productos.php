@@ -15,7 +15,7 @@ $(document).ready(function() {
     $(":checkbox").on("click", function(){
 
         let numberOfChecked = $('input:checkbox:checked').length;
-        if (numberOfChecked == 6) {
+        if (numberOfChecked == 6 || numberOfChecked < 6) {
             $('input:checkbox:checked').attr('disabled','true');
         }else{
             $('input:checkbox:checked').removeAttr('disabled');
