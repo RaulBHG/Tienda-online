@@ -4,25 +4,7 @@ check_admin();
 ?>
 <script>
 
-$(document).ready(function() {
-    let numberOfChecked = $('input:checkbox:checked').length;
-        if (numberOfChecked == 6) {
-            $('input:checkbox:checked').attr('disabled','true');
-        }else{
-            $('input:checkbox:checked').removeAttr('disabled');
-        }
-
-    $(":checkbox").on("click", function(){
-
-        let numberOfChecked = $('input:checkbox:checked').length;
-        if (numberOfChecked == 6 || numberOfChecked < 6) {
-            $('input:checkbox:checked').attr('disabled','true');
-        }else{
-            $('input:checkbox:checked').removeAttr('disabled');
-        }
-
-    } );
-    
+$(document).ready(function() {    
 
     $("#formEdit").submit(function(event) {
         // Prevent default posting of form - put here to work in case of errors
@@ -49,7 +31,7 @@ $(document).ready(function() {
         		$nombre = $("div#transEdit input[name='name']").val();
 				$imagen = $("div#transEdit input[name='imagen']").val().split('\\').pop();
 
-				$('tr#tr_' + id + " img").attr('src', "productos/"+$imagen);
+				($imagen != "") ? $('tr#tr_' + id + " img").attr('src', "productos/"+$imagen) : "";
 				$('tr#tr_' + id + " p").html($nombre);
 					
                 $("#formEdit").trigger("reset");
@@ -67,16 +49,6 @@ $(document).ready(function() {
 
     });
 });
-
-
-function detectCheck(id, portada) {
-    var check = document.getElementById(id);
-    if (portada == 0) {
-        $('tr#tr_' + id + " input").prop('checked', false);
-    } else {
-        $('tr#tr_' + id + " input").prop('checked', true);
-    }
-}
 
 function deleteProd(id) {
     Swal.fire({
@@ -130,20 +102,6 @@ function editProd(id) {
     });
 }
 
-function addPortada(id) {
-    let activo = 0;
-    if ($('tr#tr_' + id + " input").is(':checked')) {
-        activo = 1;
-    } else {
-        activo = 0;
-    }
-    $.post("configs/manejar_bbdd.php", {
-            id: id,
-            activo: activo,
-            action: "portada"
-        })
-        .done(function() {});
-}
 </script>
 
 
@@ -181,24 +139,20 @@ function addPortada(id) {
             <th>Image</th>
             <th>Name</th>
             <th colspan="2">Action</th>
-            <th>Portada</th>
         </tr>
     </thead>
 
     <?php while ($r = mysqli_fetch_array($q)) { ?>
     <tr id="tr_<?= $r['id'] ?>">
-        <td><img class="img_edit" src="productos/<?= $r['imagen'] ?>"
-                onload="detectCheck('<?= $r['id'] ?>','<?= $r['portada'] ?>')" /></td>
+        <td>
+            <img class="img_edit" src="productos/<?= $r['imagen'] ?>"/>
+        </td>
         <td><p><?php echo $r['name']; ?></p></td>
         <td>
             <a onclick="editProd('<?= $r['id']; ?>')" class="btn btn-success">Edit</a>
         </td>
         <td>
             <a onclick="deleteProd('<?= $r['id']; ?>')" class="btn btn-danger">Delete</a>
-        </td>
-        <td>
-            <input style="margin: auto; height: 20px; width: 20px;" class="form-check-input" type="checkbox"
-                onclick="addPortada('<?= $r['id'] ?>')" />
         </td>
     </tr>
     <?php } ?>

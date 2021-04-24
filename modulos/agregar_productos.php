@@ -12,6 +12,10 @@ check_admin();
             <textarea type="text" class="form-control" rows="3" name="description"
                 placeholder="Description of the product" required></textarea>
         </div>
+        
+        <div class="form-group">
+            <?= combo("SELECT id, nombre FROM tipo","tipo", $con)?>
+        </div>
 
         <label>Inserta foto</label>
         <div class="form-group">

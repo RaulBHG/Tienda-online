@@ -11,6 +11,8 @@ use PHPMailer\PHPMailer\Exception;
             $name = $_POST["name"];
             $description = $_POST["description"];
 
+            $tipo = $_POST["tipo"];
+
             $imagen = "";
 
             if ( 0 < $_FILES['imagen']['error'] ) {
@@ -54,7 +56,7 @@ use PHPMailer\PHPMailer\Exception;
              }
              $stringImagenes = implode(",", $arrayImagenes);
 
-            mysqli_query($con, "INSERT INTO productos (name, description, imagen, imagenes, portada) VALUES ('$name', '$description', '$imagen', '$stringImagenes', 0)");
+            mysqli_query($con, "INSERT INTO productos (name, description, imagen, imagenes, tipo) VALUES ('$name', '$description', '$imagen', '$stringImagenes', '$tipo')");
 
             //Fin test
             break;
@@ -178,6 +180,115 @@ use PHPMailer\PHPMailer\Exception;
             echo "Email sent successfully";
             }
             break;
+
+        case 'añadir_tipo':
+            $name = $_POST["name"];
+
+
+            $imagen = "";
+
+            if ( 0 < $_FILES['imagen']['error'] ) {
+                echo 'Error: ' . $_FILES['imagen']['error'] . '<br>';
+            }
+            else {
+                $imagen = $_FILES['imagen']['name'];
+                move_uploaded_file($_FILES['imagen']['tmp_name'], '../productos/' . $imagen);
+            }
+
+            mysqli_query($con, "INSERT INTO tipo (nombre, imagen) VALUES ('$name', '$imagen')");
+
+            //Fin test
+            break;
+
+        case 'editar_tipos':
+            $id = $_POST['id'];
+            $name = $_POST['name'];
+
+            $imagen = "";
+
+            if ( 0 < $_FILES['imagen']['error'] ) {
+                echo 'Error: ' . $_FILES['imagen']['error'] . '<br>';
+            }
+            else {
+                $imagen = $_FILES['imagen']['name'];
+                move_uploaded_file($_FILES['imagen']['tmp_name'], '../productos/' . $imagen);
+            }
+
+            $and = "";
+            if ($imagen != "") {
+            $and .= ", imagen='$imagen'";
+            }
+
+            echo $and;
+            mysqli_query($con, "UPDATE tipo SET nombre='$name' $and WHERE id=$id");
+
+            break;
+
+        case "eliminar_tipos":
+            $id = $_POST['id'];
+            mysqli_query($con, "DELETE FROM tipo WHERE id=$id");
+            break;
+
+        case 'mostrarEdit_tipo':
+            $qEdit = mysqli_query($con, "SELECT * FROM tipo WHERE id = '$id'");
+            $r = mysqli_fetch_array($qEdit);
+            echo ($r["nombre"]);
+            break;
+
+        case 'añadir_new':
+            $url = $_POST["url"];
+
+
+            $imagen = "";
+
+            if ( 0 < $_FILES['imagen']['error'] ) {
+                echo 'Error: ' . $_FILES['imagen']['error'] . '<br>';
+            }
+            else {
+                $imagen = $_FILES['imagen']['name'];
+                move_uploaded_file($_FILES['imagen']['tmp_name'], '../productos/' . $imagen);
+            }
+
+            mysqli_query($con, "INSERT INTO news (imagen, url) VALUES ('$imagen', '$url')");
+
+            //Fin test
+            break;
+
+        case 'editar_news':
+            $id = $_POST['id'];
+            $url = $_POST['url'];
+
+            $imagen = "";
+
+            if ( 0 < $_FILES['imagen']['error'] ) {
+                echo 'Error: ' . $_FILES['imagen']['error'] . '<br>';
+            }
+            else {
+                $imagen = $_FILES['imagen']['name'];
+                move_uploaded_file($_FILES['imagen']['tmp_name'], '../productos/' . $imagen);
+            }
+
+            $and = "";
+            if ($imagen != "") {
+            $and .= ", imagen='$imagen'";
+            }
+
+            echo $and;
+            mysqli_query($con, "UPDATE news SET url='$url' $and WHERE id=$id");
+
+            break;
+
+        case "eliminar_news":
+            $id = $_POST['id'];
+            mysqli_query($con, "DELETE FROM news WHERE id=$id");
+            break;
+
+        case 'mostrarEdit_news':
+            $qEdit = mysqli_query($con, "SELECT * FROM news WHERE id = '$id'");
+            $r = mysqli_fetch_array($qEdit);
+            echo ($r["url"]);
+            break;
+    
         
         default:
             

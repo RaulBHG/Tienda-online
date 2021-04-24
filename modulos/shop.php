@@ -1,4 +1,4 @@
-    <div class="row">
+    <div class="row shop">
         <?php
         $q = mysqli_query($con, "SELECT * FROM productos ORDER BY id DESC");
         while ($r = mysqli_fetch_array($q)) {

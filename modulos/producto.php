@@ -28,10 +28,10 @@
         $stringImages = $r['imagenes'];
         $arrayImages = explode(",", $stringImages);
     ?>
-        <div>
-            <div class="wrapper">
+        <div class="container">
+            <div class="row">
                 <!--Slider-->
-                <div id="carouselExampleIndicators" class="carousel slide product-img" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide product-img col-md-6" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <?php
@@ -67,7 +67,7 @@
                     </a>
                 </div>
                 <!--Slider-->
-                <div class="product-info">
+                <div class="product-info col-md-6">
                     <div class="product-text">
                         <h1><?= $r['name'] ?></h1>
                         <h2>por Lidia Hernán</h2>

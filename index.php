@@ -15,13 +15,12 @@ if (!isset($p)) {
 <head>
     
     <script type="text/javascript" src="js/jquery.js"></script>
-
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
     </script>
-
     <script src="https://kit.fontawesome.com/8ae4b535da.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="stylesheet" href="css/style.css" />
@@ -38,7 +37,7 @@ if (!isset($p)) {
         </div>
         <div style="height: 54px;">
             <nav id="menu">
-                <ul>
+                <ul class="button">
                     <li><a href="?p=inicio">Inicio</a></li>
                     <li><a href="?p=shop">Shop</a></li>
                     <li><a href="?p=about">About</a></li>
@@ -70,7 +69,7 @@ if (!isset($p)) {
     <!--Nuevo menu-->
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <li><a href="?p=inicio">Inicio</a></li>
+        <a href="?p=inicio">Inicio</a>
         <a href="?p=shop">Shop</a>
         <a href="?p=about">About</a>
         <a href="?p=contact">Contact</a>

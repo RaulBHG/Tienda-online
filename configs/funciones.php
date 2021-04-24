@@ -49,8 +49,16 @@
         }
     }
 
-    /*function togglePopup() {
-        document.getElementById("popup-1").classList.toggle("active");
-    }*/
+    //Generar combo, la primera columna es el val, el otro el texto
+    function combo($sql, $name, $con) {
+        $result = "<select class='form-control' name='".$name."' required>";
+        $q = mysqli_query($con, $sql);
+        while ($r = mysqli_fetch_row($q)) {
+            $result .= "<option value='".$r[0]."'>".$r[1]."</option>";
+        }
+        $result .= "</select>";
+        mysqli_close($con);
+        return $result;
+    }
 
 ?>
