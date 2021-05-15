@@ -13,7 +13,10 @@ if (!isset($p)) {
 <html lang="es">
 
 <head>
-    
+    <link rel="stylesheet" href="dist/notice.min.css">
+    <script src="dist//notice.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css" />
     <script type="text/javascript" src="js/jquery.js"></script>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -23,7 +26,6 @@ if (!isset($p)) {
     </script>
     <script src="https://kit.fontawesome.com/8ae4b535da.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <link rel="stylesheet" href="css/style.css" />
     
     <title>Tienda online</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,6 +49,21 @@ if (!isset($p)) {
         </div>
     </div>
     <script>
+    function toast(texto) {
+        $(".toast-body").html(texto);
+        $('.toast').toast('show');
+
+    }
+    function loadingOn(){
+        const notice = new Notice();
+        notice.showLoading({
+            type: 'dots'  // default：'line'
+        });
+    }
+    function loadingOf(){
+        const notice = new Notice();
+        notice.hideLoading()
+    }
     $(document).ready(function() {
         var stickyNavTop = $('#menu').offset().top;
 
@@ -95,6 +112,12 @@ if (!isset($p)) {
         }
         ?>
         </div>
+    </div>
+
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000" style="position: absolute; bottom: 2rem; right: 0.5rem;">
+    <div class="toast-body">
+        Hello, world! This is a toast message.
+    </div>
     </div>
 
     <div class="footer">
