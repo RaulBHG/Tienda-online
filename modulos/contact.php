@@ -50,25 +50,11 @@ $("#contactForm").submit(function(event) {
         contentType: false,
         processData: false,
         beforeSend: function() {
-            Swal.fire({
-                title: 'Enviando mensaje',
-                allowOutsideClick: false,
-                html: 'Se cierrará cuando se haya enviado el mensaje.',
-                didOpen: () => {
-                    Swal.showLoading()
-                },
-            });
+            loadingOn();
         },
         success: function(data) {
-            Swal.close();
-            $("#contactForm").trigger("reset");
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Mensaje enviado con éxito',
-                showConfirmButton: false,
-                timer: 2000
-            });
+            loadingOf();
+            toast("Se ha enviado correctamente");
         },
     });
 
